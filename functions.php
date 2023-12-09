@@ -22,3 +22,18 @@ function change_sold_out_product_price_html( $price_html, $product ) {
     }
     return $price_html;
 }
+
+/**
+ * How to change woocommerce product stock status text
+*/
+function puri_woocommerce_get_availability_text( $text, $product ) {
+    if (!$product->is_in_stock()) {
+        $text = 'SOLD OUT';
+    } else {
+    // You can add more conditions here. e.g if product is available.
+    // $text = 'Available right now';
+    }
+    return $text;
+}
+
+add_filter( 'woocommerce_get_availability_text', 'puri_woocommerce_get_availability_text', 999, 2);
