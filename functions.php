@@ -1,3 +1,5 @@
+<?php
+
 /**
  * Change add to cart button text to Out of stock
 */
