@@ -39,3 +39,20 @@ function puri_woocommerce_get_availability_text( $text, $product ) {
 }
 
 add_filter( 'woocommerce_get_availability_text', 'puri_woocommerce_get_availability_text', 999, 2);
+
+/**
+ * Custom message base on the stock quantity
+*/
+
+function puri_woocommerce_get_availability_text( $text, $product ) {
+    if (!$product->is_in_stock()) {
+        $text = 'SOLD OUT';
+    } else if($product->get_stock_quantity() <= 10 && $product->get_stock_quantity() >= 1) {
+    	$text = 'FINAL BOTTLES';
+    } else{
+		$text = '';
+	}
+    return $text;
+}
+
+add_filter( 'woocommerce_get_availability_text', 'puri_woocommerce_get_availability_text', 999, 2);
